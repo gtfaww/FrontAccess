@@ -1,7 +1,7 @@
 package model
 
 import (
-	"FrontAccess/src/dao"
+	"FrontAccess/src/service"
 	"time"
 )
 
@@ -23,6 +23,6 @@ func GetUserByName(userName string) (user []User, err error) {
 	var auser []User
 	//ret := dao.MysqlClient.Table("user").Select("id").Where("username = ?", userName).Take(&auser)
 
-	ret:= dao.MysqlClient.Raw("select id from user where username = ?",userName).Scan(&auser)
+	ret:= service.MysqlClient.Raw("select id from user where username = ?",userName).Scan(&auser)
 	return auser, ret.Error
 }

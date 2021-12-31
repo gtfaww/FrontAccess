@@ -1,7 +1,7 @@
 package model
 
 import (
-	"FrontAccess/src/dao"
+	"FrontAccess/src/service"
 )
 
 type Device struct {
@@ -23,12 +23,12 @@ func (Device) TableName() string {
 func GetDeviceId(Imei string) (user Device, err error) {
 	var DeviceId Device
 
-	ret := dao.MysqlClient.Raw("select device_id from info_device where imei = ?", Imei).Scan(&DeviceId)
+	ret := service.MysqlClient.Raw("select device_id from info_device where imei = ?", Imei).Scan(&DeviceId)
 	return DeviceId, ret.Error
 }
 
 func UpdateDeviceId(Imei string, DeviceName string) (err error) {
 
-	ret := dao.MysqlClient.Model(&Device{}).Where("imei = ?", Imei).Update("device_name", DeviceName)
+	ret := service.MysqlClient.Model(&Device{}).Where("imei = ?", Imei).Update("device_name", DeviceName)
 	return ret.Error
 }

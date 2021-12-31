@@ -3,6 +3,7 @@ package main
 import (
 	"FrontAccess/src/handler"
 	"FrontAccess/src/service"
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"runtime"
@@ -13,6 +14,7 @@ func main() {
 	runtime.GOMAXPROCS(4)
 
 	r := gin.Default()
+	pprof.Register(r)
 	r.Use(service.LogMiddleWare())
 
 	gin.SetMode(gin.ReleaseMode)
