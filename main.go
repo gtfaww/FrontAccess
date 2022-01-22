@@ -9,6 +9,27 @@ import (
 	"runtime"
 )
 
+const (
+	a1 = iota
+	a2 = 100
+	a3 = iota
+	a4
+)
+
+const (
+	_  = iota
+	KB = 1 << (10 * iota)
+	MB = 1 << (10 * iota)
+	GB = 1 << (10 * iota)
+	PB = 1 << (10 * iota)
+)
+
+//八进制
+var a = 012
+
+// 16进制
+var b = 0xff
+
 func main() {
 
 	runtime.GOMAXPROCS(4)
